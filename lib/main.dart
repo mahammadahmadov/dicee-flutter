@@ -37,25 +37,37 @@ class _DicePageState extends State<DicePage> {
     return Center(
       child: Row(
         children: [
-          Expanded(
-            // flex: 1,
-            child: TextButton(
-              onPressed: () {
-                changeDiceFace();
-              },
-              child: Image.asset('assets/images/dice$leftDiceVal.png'),
-            ),
+          DiceFace(
+            diceVal: leftDiceVal,
+            onTap: () {
+              changeDiceFace();
+            },
           ),
-          Expanded(
-            // flex: 1,
-            child: TextButton(
-              onPressed: () {
-                changeDiceFace();
-              },
-              child: Image.asset('assets/images/dice$rightDiceVal.png'),
-            ),
+          DiceFace(
+            diceVal: rightDiceVal,
+            onTap: () {
+              changeDiceFace();
+            },
           )
         ],
+      ),
+    );
+  }
+}
+
+class DiceFace extends StatelessWidget {
+  DiceFace({required this.diceVal, required this.onTap});
+
+  final int diceVal;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      // flex: 1,
+      child: TextButton(
+        onPressed: onTap,
+        child: Image.asset('assets/images/dice$diceVal.png'),
       ),
     );
   }
